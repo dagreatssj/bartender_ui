@@ -12,10 +12,10 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 try:
     conn = sqlite3.connect(DATABASE)
-    conn.execute('CREATE TABLE IF NOT EXISTS drinks (name TEXT, image_name TEXT, drink_info TEXT)')
+    conn.execute('CREATE TABLE IF NOT EXISTS drinks (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, image_name TEXT, drink_info TEXT)')
     conn.close()
-except:
-    print('failed to create database')
+except sqlite3.Error as e:
+    print(e, flush=True)
 
 def query_database(query):
     try:
@@ -66,8 +66,8 @@ def submit_form():
 
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        file.save(os.path.join(UPLOAD_DIR, filename))
-        image_name = file.filename
+        file.save(os.path.join(UPLOAD_DIR, 'up_' + filename))
+        image_name = 'up_' + file.filename
     else:
         image_name = 'cocktail.jpg'
 
