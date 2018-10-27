@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Bartender - Drinks Menu{% endblock %}
+
+{% block content %}
+<div id="bg">
+    {% include "header.html" %}
+    <div class="container" style="padding-top: 45px">
+            {% if drink_list %}
+            <div class="card-columns">
+                {% for drink in drink_list %}
+                <div class="card">
+                    <img class="card-img-top img-fluid" src="/static/img/{{ drink['image_name'] }}" alt="Card image cap">
+                    <div class="card-body" >
+                        <h5 class="card-title">{{ drink['name'] }}</h5>
+                        <p class="card-text">{{ drink['drink_info'] }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="alert alert-light" role="alert">
+                No drinks found,
+                <a href="/add">ADD DRINKS!!!</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Bartender</span>
+    <div class="navbar-nav">
+        {% if request.path == '/' %}
+        <a class="nav-item btn btn-outline-success" href="/add">Add Drinks!</a>
+        {% else %}
+        <a class="nav-item btn btn-outline-success" href="/">back</a>
+        {% endif %}
+    </div>
+</nav>
