@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Bartender - Edit Drink{% endblock %}
+
+{% block content %}
+<div id="edit-bg">
+    {% include "header.html" %}
+    <div class="container" style="padding-top: 45px">
+        <form action="{{ url_for('update_drink') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="drink-name">Drink Name</label>
+                <input type="text" class="form-control" id="drink-name" placeholder="Drink Name" name="drink_name" maxlength="140" value="{{ drink[0]['name'] }}">
+            </div>
+            <div class="form-group">
+                <label for="drink-info">Drink Information</label>
+                <textarea type="text" class="form-control" id="drink-info" placeholder="Drink Information" name="drink_info" maxlength="200">{{ drink[0]['drink_info'] }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="drink-image">Drink Image</label>
+                <input type="file" class="form-control-file" id="drink-image" name="drink_image" value="{{ drink[0]['image_name'] }}">
+            </div>
+            <input type="hidden" id="drink-id" name="drink_id" value="{{ drink[0]['id'] }}">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -2,6 +2,10 @@
 
 {% block title %}Bartender - Drinks Menu{% endblock %}
 
+{% block javascripts %}
+<script src="{{ url_for("static", filename="js/cardPress.js") }}"></script>
+{% endblock %}
+
 {% block content %}
 <div id="bg">
     {% include "header.html" %}
@@ -10,6 +14,9 @@
             <div class="card-columns">
                 {% for drink in drink_list %}
                 <div class="card">
+                    <button type="button" class="btn edit-button" data-drink-id="{{ drink['id'] }}">
+                        <span>Edit</span>
+                    </button>
                     <img class="card-img-top img-fluid" src="/static/img/{{ drink['image_name'] }}" alt="Card image cap">
                     <div class="card-body" >
                         <h5 class="card-title">{{ drink['name'] }}</h5>
