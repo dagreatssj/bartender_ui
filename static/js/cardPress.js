@@ -12,7 +12,8 @@ for (let j = 0; j < editButtonDiv.length; j++) {
 
 for (let i = 0; i < cardDiv.length; i++) {
   cardDiv[i].addEventListener('click', function() {
-    var drinkName = this.getElementsByClassName('card-title')[0].innerHTML;
-    console.log(drinkName);
+    let drinkName = this.getElementsByClassName('card-title')[0].innerHTML;
+    let makeToOrderDiv = document.getElementById('make-to-order');
+    makeToOrderDiv.innerHTML = drinkName; 
   });
 }

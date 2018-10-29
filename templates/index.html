@@ -10,27 +10,45 @@
 <div id="bg">
     {% include "header.html" %}
     <div class="container" style="padding-top: 45px">
-            {% if drink_list %}
-            <div class="card-columns">
-                {% for drink in drink_list %}
-                <div class="card">
-                    <button type="button" class="btn edit-button" data-drink-id="{{ drink['id'] }}">
-                        <span>Edit</span>
-                    </button>
-                    <img class="card-img-top img-fluid" src="/static/img/{{ drink['image_name'] }}" alt="Card image cap">
-                    <div class="card-body" >
-                        <h5 class="card-title">{{ drink['name'] }}</h5>
-                        <p class="card-text">{{ drink['drink_info'] }}</p>
-                    </div>
+        {% if drink_list %}
+        <div class="card-columns">
+            {% for drink in drink_list %}
+            <div class="card" data-toggle="modal" data-target="#order-drink">
+                <button type="button" class="btn edit-button" data-drink-id="{{ drink['id'] }}">
+                    <span>Edit</span>
+                </button>
+                <img class="card-img-top img-fluid" src="/static/img/{{ drink['image_name'] }}" alt="Card image cap">
+                <div class="card-body" >
+                    <h5 class="card-title">{{ drink['name'] }}</h5>
+                    <p class="card-text">{{ drink['drink_info'] }}</p>
                 </div>
-                {% endfor %}
             </div>
-            {% else %}
-            <div class="alert alert-light" role="alert">
-                No drinks found,
-                <a href="/add">ADD DRINKS!!!</a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-light" role="alert">
+            No drinks found,
+            <a href="/add">ADD DRINKS!!!</a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="modal fade" id="order-drink" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Order</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span id="make-to-order"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Make Drink</button>
+                </div>
             </div>
-            {% endif %}
         </div>
     </div>
 </div>
